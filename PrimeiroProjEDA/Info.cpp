@@ -16,10 +16,10 @@ int contaLinhas(string fileName) {
 	return tamanho;
 }
 
-string ficheiroRandom(string arr[], int tamanho, string filename) {
+string ficheiroRandom(string arr[], string filename) {
 	srand(time(0));
 	int i = 0;
-	tamanho = contaLinhas(filename);
+	int tamanho = contaLinhas(filename);
 	int random = rand() % (tamanho + 1); //[0,tamanho] do file
 	fstream file;
 	file.open(filename, ios::in);
