@@ -20,68 +20,74 @@ string *modelos;
 
 //CODIGO MAIN AINDA ESTÁ PRECISANDO DE ALTERAÇÕES
 
+// ERRO NO NUM DE CAPACIDADE, NUM DE CARROS NO PRINT TO LOOP E ERRO DOS NOMES DOS CARROS NESSE LOOP
 int main() {
-    int tamanho = 0;
+    srand(time(NULL));
     const int tamanho_marca = contaLinhas("marcas.txt");
+    const int tamanho_modelos = contaLinhas("modelos.txt");
     string* marcas = nullptr;
     marcas = new string[tamanho_marca];
-
-    srand(time(0));
+    string* modelos = nullptr;
+    modelos = new string[tamanho_modelos];
     string nome= " ";
-    int et = (rand() % (8 - 3 + 1)) + 3;
+    int et = (rand() % (8 - 3 + 1)) + 3;  //[8,3]
     const int NUM_ETS = et;
     ET* oficina = new ET[NUM_ETS];
-    //Carro* garagem = new Carro[tamanho_marca];
+    //Carro* garagem = new Carro[50];
     //garagem[tamanho_marca].marca;
 
-    // Preencher as ETs com valores de exemplo
+    // Inicializar os valores das ET's
     for (int i = 0; i < NUM_ETS; i++) {
+        srand(time(NULL) + i);
         oficina[i].id = i + 1;
-        oficina[i].responsavel.especializacao = "Mecanico " + to_string(i + 1);
-        oficina[i].capacidade = (rand() % (5 - 2 + 1)) + 2;
-        oficina[i].carros = (rand() % (oficina[i].capacidade + 1));
+        oficina[i].capacidade = (rand() % (5 - 2 + 1)) + 2; //[5,2]
+        oficina[i].carros = (rand() % (oficina[i].capacidade + 1)); //[capacidade,0]
         oficina[i].faturacao = 0;
 
-        // Alocar um vetor dinamico de carros reparados
+        // vetor dinamico para os carros reparados
         oficina[i].reparados = new Carro[oficina[i].capacidade];
 
-        // Preencher os carros reparados com valores de exemplo
-        for (int j = 0; j < oficina[i].capacidade; j++) {
-            marcas[i] = ficheiroRandom(marcas, tamanho, "marcas.txt");
-            oficina[i].reparados[j].marca = marcas[i];
+        //inicializar valores dos carros
+        for (int j = 0; j < oficina[i].carros; j++) {
+            srand(time(NULL) + j);
+            oficina[i].responsavel.especializacao = ficheiroRandom(marcas, "marcas.txt");
+            modelos[i] = ficheiroRandom(modelos, "modelos.txt");
         }
     }
 
     // Imprimir os dados das ETs
     for (int i = 0; i < NUM_ETS; i++) {
-        cout << "ET " << oficina[i].id << "  ";
-        cout << "| Responsavel: ";  //oficina[i].responsavel.especializacao << "  ";
-        getline(cin, nome); 
-        cout << "\033[1A"; // Move cursor up one line
-        cout << "\033[2K"; // Erase entire line
-        //Apos linha apagada, repeticao das linhas, mas sem o getline
-        cout << "ET " << oficina[i].id << "  ";
-        cout << "| Responsavel: ";  //oficina[i].responsavel.especializacao << "  ";
-        cout << nome << "  ";
-        cout << "| Capacidade: " << oficina[i].capacidade << "  ";
-        cout << "| Carros: " << (rand() % (oficina[i].capacidade + 1)) << "  ";
-        cout << "| Marca: " << marcas[i] << "  ";
-        cout << "| Faturacao: " << oficina[i]. faturacao << "  "; //adicionar
+        for (int j = 0; j <= i; i++) {
+            cout << "ET " << oficina[i].id << "  ";
+            cout << "| Responsavel: ";
+            getline(cin, nome);
+            oficina[i].responsavel.nome = nome;
+            cout << "\033[1A"; // Move cursor up one line
+            cout << "\033[2K"; // Erase entire line
+            //Apos linha apagada, repeticao das linhas, mas sem o getline
+            cout << "ET " << oficina[i].id << "  ";
+            cout << "| Responsavel: "; cout <<oficina[i].responsavel.nome << "  "; //cout << nome << "  ";
+            cout << "| Capacidade: " << oficina[i].capacidade << "  ";
+            cout << "| Carros: " << oficina[i].carros << "  ";
+            cout << "| Marca: " << oficina[i].responsavel.especializacao << "  ";
+            cout << "| Faturacao: " << oficina[i].faturacao << "  "; //adicionar
 
-        // Imprimir os carros  
-        cout << endl;
-        for (int j = 0; j < oficina[i].capacidade; j++) {
-            cout << "Carro: ";
-            cout << oficina[i].reparados[j].marca /*alternativa => marcs[i]*/ << " " << oficina[i].reparados[j].modelo << endl;
+            // Imprimir os carros  
+            cout << endl;
+            for (int j = 0; j < oficina[i].carros; j++) {
+                cout << "Carro: ";
+                cout << "ID:   | " << oficina[i].responsavel.especializacao << " - " << modelos[i] << endl;
+            }
+            cout << endl;
         }
-        cout << endl;
     }
 
     // Liberar a memoria alocada para os vetores dinamicos de carros reparados
     for (int i = 0; i < NUM_ETS; i++) {
         delete[] oficina[i].reparados;
-    }
+    }return 0;
 }
+
 
 
 
