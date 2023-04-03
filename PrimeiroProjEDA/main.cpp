@@ -33,5 +33,3 @@ bool aberturaFicheiros(string*& marcas, string*& modelos){
         return true;
     }
 }
-
-//funciona?
