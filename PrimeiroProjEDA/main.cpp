@@ -58,7 +58,6 @@ int main() {
 
     // Imprimir os dados das ETs
     for (int i = 0; i < NUM_ETS; i++) {
-        for (int j = 0; j <= i; i++) {
             cout << "ET " << oficina[i].id << "  ";
             cout << "| Responsavel: ";
             getline(cin, nome);
@@ -80,7 +79,6 @@ int main() {
                 cout << "ID:   | " << oficina[i].responsavel.especializacao << " - " << modelos[i] << endl;
             }
             cout << endl;
-        }
     }
 
     // Liberar a memoria alocada para os vetores dinamicos de carros reparados
