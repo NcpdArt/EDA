@@ -16,11 +16,13 @@ int contaLinhas(string fileName) {
 	return tamanho;
 }
 
-string ficheiroRandom(string arr[], string filename) {
-	srand(time(0));
+string ficheiroRandom(string filename) {
+	//srand(time(0));
 	int i = 0;
 	int tamanho = contaLinhas(filename);
 	int random = rand() % (tamanho + 1); //[0,tamanho] do file
+	string* arr = nullptr;
+	arr = new string[tamanho];
 	fstream file;
 	file.open(filename, ios::in);
 	string line;
@@ -32,5 +34,4 @@ string ficheiroRandom(string arr[], string filename) {
 		file.close();
 	}
 	return  arr[random];  // cout do array com linha random
-
 }
