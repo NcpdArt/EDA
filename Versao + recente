@@ -358,12 +358,14 @@ void  atualiza_tempo_rep() {
                     ETs[i].carros[j].tempoReparacao = tempo_atual;
 
                     tempo_reparado = true;
+
+                    if (tempo_atual == 0) {
+                        reparacao_manual();
+                        ETs[i].faturacao += ETs[i].responsavel.custo * ETs[i].nrCarros; // faturar custo por cada carro reparado
+                        tempo_reparado = false;
+                    }
                     break;
                 }
-            }
-            if (tempo_atual == 0) {
-                ETs[i].faturacao += ETs[i].responsavel.custo * ETs[i].nrCarros; // faturar custo por cada carro reparado
-                tempo_reparado = false;
             }
             if (tempo_reparado) break;
         }
@@ -372,14 +374,12 @@ void  atualiza_tempo_rep() {
     if (tempo_reparado == true)
         cout << "O carro escolhido foi atualizado!";
     if (tempo_atual == 0 && tempo_reparado == true) {
-        reparacao_manual();
         cout << "O carro escolhido foi reparado! Tempo atualizado a zero!";
     }
     else
         cout << "Carro nao se encontra em nenhuma ET, tente refazer a operacao com outra marca/modelo !.";
     cout << endl;
 }
-
 
 
 void gestao() {
