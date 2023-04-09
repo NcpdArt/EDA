@@ -131,7 +131,7 @@ void imprimeLEspera() {
 }
 
 void imprimeETs() {
-    int aux = 0; string nome;
+     int aux = 0; string nome;
     for (int i = 0; i < nrETs; i++) {
         do {
             cout << "Insira o preco de reparacao por dia (Max 100) do mecanico da ET " << i + 1 << " :" << endl; cin >> aux; ETs[i].responsavel.custo = aux;
@@ -159,27 +159,30 @@ void imprimeETs() {
         cout << endl;
         cout << "Carros: " << endl;
         for (int j = 0; j < ETs[i].nrCarros; j++) {
-            cout << "Carro: " << ETs[i].carros[j].id;
+            cout << "Carro: ";
             cout << "\t" << " | Id: " << ETs[i].carros[j].id;
             cout << "\t" << " | Marca: " << ETs[i].carros[j].marca;
-            cout << "\t" << "Modelo: " << ETs[i].carros[j].modelo;
-            cout << "\t" << "\t" << "\t" << "Tempo de Reparacao(MAX): " << ETs[i].carros[j].tempoReparacaoMax;
-            cout << "\t" << "\t" << "\t" << "Tempo de Reparacao: " << ETs[i].carros[j].tempoReparacao;
-            cout << "\t" << "\t" << "\t" << "Prioritario: " << ETs[i].carros[j].prioritario << endl;
+            cout << "\t" << " | Modelo: " << ETs[i].carros[j].modelo;
+            cout << "\t" << " | Tempo de Reparacao(MAX): " << ETs[i].carros[j].tempoReparacaoMax;
+            cout << "\t" << " | Tempo de Reparacao: " << ETs[i].carros[j].tempoReparacao;
+            cout << "\t" << " | Prioritario: " << ETs[i].carros[j].prioritario << endl;
         }
         cout << endl;
         cout << "Reparados: " << endl;
         for (int j = 0; j < ETs[i].nrReparados; j++) {
-            cout << "\t" << "Carro: " << ETs[i].reparados[j].id << endl;
-            cout << "\t" << "\t" << "Id: " << ETs[i].carros[j].id << endl;
-            cout << "\t" << "\t" << "Marca: " << ETs[i].reparados[j].marca << endl;
-            cout << "\t" << "\t" << "\t" << "Modelo: " << ETs[i].reparados[j].modelo << endl;
-            cout << "\t" << "\t" << "\t" << "Tempo de Reparacao(MAX): " << ETs[i].reparados[j].tempoReparacaoMax << endl;
-            cout << "\t" << "\t" << "\t" << "Tempo de Reparacao: " << ETs[i].reparados[j].tempoReparacao << endl;
-            cout << "\t" << "\t" << "\t" << "Prioritario: " << ETs[i].reparados[j].prioritario << endl;
+            cout << "\t" << "Carro: ";
+            cout << "\t" << " | Id: " << ETs[i].carros[j].id;
+            cout << "\t" << " | Marca: " << ETs[i].reparados[j].marca;
+            cout << "\t" << " | Modelo: " << ETs[i].reparados[j].modelo;
+            cout << "\t" << " | Tempo de Reparacao(MAX): " << ETs[i].reparados[j].tempoReparacaoMax;
+            cout << "\t" << " | Tempo de Reparacao: " << ETs[i].reparados[j].tempoReparacao;
+            cout << "\t" << " | Prioritario: " << ETs[i].reparados[j].prioritario << endl;
         }
         cout << endl;
+        cout << "--------------------------------------------------------------------------------";
+        cout << endl;
     }
+    
 }
 
 
