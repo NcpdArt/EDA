@@ -120,18 +120,24 @@ void removeLEspera(int indice) {
 }
 
 void imprimeLEspera() {
+    cout << "Lista de espera : " << endl;
+    cout << "----------------- " << endl;
     for (int i = 0; i < tamanho; i++) {
-        cout << "Carro: " << LEspera[i].id << endl;
-        cout << "\t" << "Marca: " << LEspera[i].marca << endl;
-        cout << "\t" << "Modelo: " << LEspera[i].modelo << endl;
-        cout << "\t" << "Tempo de Reparacao(MAX): " << LEspera[i].tempoReparacaoMax << endl;
-        cout << "\t" << "Tempo de Reparacao: " << LEspera[i].tempoReparacao << endl;
-        cout << "\t" << "Prioritario: " << LEspera[i].prioritario << endl;
+       cout << "Carro: ";
+       cout <<"\t" << " | ID: " << LEspera[i].id;
+       cout << "\t" << " | Marca: " << LEspera[i].marca;
+       cout << "\t" << " | Modelo: " << LEspera[i].modelo;
+       cout << "\t" << " | Tempo de Reparacao(MAX): " << LEspera[i].tempoReparacaoMax;
+       cout << "\t" << " | Tempo de Reparacao: " << LEspera[i].tempoReparacao;
+       cout << "\t" << " | Prioritario: " << LEspera[i].prioritario << endl;
+       cout << endl;
+       cout << "------------------------------------------------------------" << endl;
+       cout << endl;
     }
 }
 
 void imprimeETs() {
-     int aux = 0; string nome;
+    int aux = 0; string nome;
     for (int i = 0; i < nrETs; i++) {
         do {
             cout << "Insira o preco de reparacao por dia (Max 100) do mecanico da ET " << i + 1 << " :" << endl; cin >> aux; ETs[i].responsavel.custo = aux;
@@ -182,7 +188,6 @@ void imprimeETs() {
         cout << "--------------------------------------------------------------------------------";
         cout << endl;
     }
-    
 }
 
 
@@ -353,7 +358,7 @@ void  atualiza_tempo_rep() {
     cout << "Para reparar um carro precisamos de: " << endl;
     cout << "Marca: "; getline(cin, marca_rep);
     cout << "Modelo: "; getline(cin, modelo_rep);
-    cout << "Tempo de reparação novo (Dias): "; cin >> tempo_atual;
+    cout << "Tempo de reparacao novo (Dias): "; cin >> tempo_atual;
     bool tempo_reparado = false;
     for (int i = 0; i < nrETs; i++) {
         if (ETs[i].carros) {
@@ -384,6 +389,7 @@ void  atualiza_tempo_rep() {
         cout << "Carro nao se encontra em nenhuma ET, tente refazer a operacao com outra marca/modelo !.";
     cout << endl;
 }
+
 
 void imprimeETs_ciclo() {
     for (int i = 0; i < nrETs; i++){
@@ -422,6 +428,7 @@ void imprimeETs_ciclo() {
     cout << endl;
     }
 }
+
 
 
 void gestao() {
@@ -473,7 +480,8 @@ void gestao() {
                     break;
                 case 2: 
                     cout << "";
-               
+                /*case 0:
+                    cout << "Saindo de imprimir oficina!";*/
                 default:
                     cout << "Opcao invalida.\n";
                     break;
@@ -498,10 +506,16 @@ void gestao() {
 }
 
 void ciclo(){
+    cout << endl;
+    cout << endl;
+    cout << "NOVO DIA " << endl;
+    cout << endl;
+    cout << endl;
     reparacaoDeCarros();
     dezCarrosNovos();
     colocaOitoCarrosNasETs();
-     imprimeETs_ciclo();
+    imprimeETs_ciclo();
+    imprimeLEspera();
 }
 
 int main() {
@@ -510,8 +524,8 @@ int main() {
         cout << "Erro na abertura dos ficheiros!" << endl;
     }
     inicializacao();
-    imprimeLEspera();
     imprimeETs();
+    imprimeLEspera();
     while (true) {
         cout << "Opcao s - ciclo / Opcao g - gestao / opcao 0 - Sair do programa : " << endl;
         cin >> opcao;
