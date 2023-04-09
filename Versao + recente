@@ -256,7 +256,7 @@ void removeCarro(Carro** vetor, int* tamanho, Carro carro) {
 
 
 void reparacaoDeCarros() {
-    cout << "Entrou na reparacao De Carros" << endl;
+    //cout << "Entrou na reparacao De Carros" << endl;
     for (int i = 0; i < nrETs; i++) {
         if (ETs[i].carros) {
             for (int j = 0; j < ETs[i].nrCarros; j++) {
@@ -274,7 +274,7 @@ void reparacaoDeCarros() {
 }
 
 void dezCarrosNovos() {
-    cout << "Entrou na dezCarrosNovos" << endl;
+    //cout << "Entrou na dezCarrosNovos" << endl;
     string* marcasDisponiveis = new string[nrETs];
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < nrETs; j++) marcasDisponiveis[j] = ETs[j].responsavel.especializacao;
@@ -291,7 +291,7 @@ void dezCarrosNovos() {
 }
 
 void colocaOitoCarrosNasETs() {
-    cout << "Entrou na coloca8" << endl;
+    //cout << "Entrou na coloca8" << endl;
     int proximo = 0;
     int j = 0;
     bool encontrouET = false;
@@ -382,6 +382,44 @@ void  atualiza_tempo_rep() {
     cout << endl;
 }
 
+void imprimeETs_ciclo() {
+    for (int i = 0; i < nrETs; i++){
+    cout << "ID ET: " << ETs[i].id;
+    cout << "\t" << " | Nome: " << ETs[i].responsavel.nome;
+    cout << "\t" << " | Custo do responsavel: " << ETs[i].responsavel.custo;
+    cout << "\t" << " | Especializacao: " << ETs[i].responsavel.especializacao;
+    cout << "\t" << " | Capacidade: " << ETs[i].capacidade;
+    cout << "\t" << " | Carros: " << ETs[i].nrCarros;
+    cout << "\t" << " | Faturacao da ET: " << ETs[i].faturacao;
+    cout << "\t" << " | Reparados da ET: " << ETs[i].nrReparados << endl;
+    cout << endl;
+    cout << "Carros: " << endl;
+        for (int j = 0; j < ETs[i].nrCarros; j++) {
+        cout << "Carro: " ;
+        cout << "\t" << " | Id: " << ETs[i].carros[j].id;
+        cout << "\t" << " | Marca: " << ETs[i].carros[j].marca;
+        cout << "\t" << " | Modelo: " << ETs[i].carros[j].modelo;
+        cout << "\t" << " | Tempo de Reparacao(MAX): " << ETs[i].carros[j].tempoReparacaoMax;
+        cout << "\t" << " | Tempo de Reparacao: " << ETs[i].carros[j].tempoReparacao;
+        cout << "\t" << " | Prioritario: " << ETs[i].carros[j].prioritario << endl;
+        }
+    cout << endl;
+    cout << "Reparados: " << endl;
+        for (int j = 0; j < ETs[i].nrReparados; j++) {
+        cout << "\t" << "Carro: ";
+        cout << "\t" << " | Id: " << ETs[i].carros[j].id;
+        cout << "\t" << " | Marca: " << ETs[i].reparados[j].marca;
+        cout << "\t" << " | Modelo: " << ETs[i].reparados[j].modelo;
+        cout << "\t" << " | Tempo de Reparacao(MAX): " << ETs[i].reparados[j].tempoReparacaoMax;
+        cout << "\t" << " | Tempo de Reparacao: " << ETs[i].reparados[j].tempoReparacao;
+        cout << "\t" << " | Prioritario: " << ETs[i].reparados[j].prioritario << endl;
+        }
+    cout << endl;
+    cout << "--------------------------------------------------------------------------------";
+    cout << endl;
+    }
+}
+
 
 void gestao() {
     int opcao_g = 0;
@@ -460,6 +498,7 @@ void ciclo(){
     reparacaoDeCarros();
     dezCarrosNovos();
     colocaOitoCarrosNasETs();
+     imprimeETs_ciclo();
 }
 
 int main() {
