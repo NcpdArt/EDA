@@ -176,7 +176,7 @@ void imprimeETs() {
         cout << endl;
         cout << "Reparados: " << endl;
         for (int j = 0; j < ETs[i].nrReparados; j++) {
-            cout << "\t" << "Carro: ";
+            cout << "Carro: ";
             cout << "\t" << " | Id: " << ETs[i].carros[j].id;
             cout << "\t" << " | Marca: " << ETs[i].reparados[j].marca;
             cout << "\t" << " | Modelo: " << ETs[i].reparados[j].modelo;
@@ -415,7 +415,7 @@ void imprimeETs_ciclo() {
     cout << endl;
     cout << "Reparados: " << endl;
         for (int j = 0; j < ETs[i].nrReparados; j++) {
-        cout << "\t" << "Carro: ";
+        cout << "Carro: ";
         cout << "\t" << " | Id: " << ETs[i].carros[j].id;
         cout << "\t" << " | Marca: " << ETs[i].reparados[j].marca;
         cout << "\t" << " | Modelo: " << ETs[i].reparados[j].modelo;
