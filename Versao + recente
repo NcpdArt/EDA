@@ -465,17 +465,15 @@ void gestao() {
                 cout << endl;
                 cout << "1 - Por ordem alfabetica da marca" << endl;
                 cout << "2 - Por tempo de reparacao" << endl;
-                //cout << "8 - Sair de imprimir a oficina " << endl;
                 cin >> opcao_Imprime;
                 cin.ignore(); // limpar o buffer do teclado
                 switch (opcao_Imprime) {
                 case 1:
-                    cout << "";
+                    //INPUT 7.1
                     break;
                 case 2: 
-                    cout << "";
-                /*case 0:
-                    cout << "Saindo de imprimir oficina!";*/
+                    //INPUT 7.2
+                    break;
                 default:
                     cout << "Opcao invalida.\n";
                     break;
