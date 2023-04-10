@@ -335,7 +335,7 @@ void reparacao_manual() {
                     ETs[i].carros[j].tempoReparacao = ETs[i].carros[j].tempoReparacaoMax;
                     adicionaCarro(&ETs[i].reparados, &ETs[i].nrReparados, ETs[i].carros[j]);
                     removeCarro(&ETs[i].carros, &ETs[i].nrCarros, ETs[i].carros[j]);
-                    nr_reparados =+ 1;
+                    nr_reparados = +1;
                     reparado = true;
                 }
             }
@@ -351,44 +351,38 @@ void reparacao_manual() {
     cout << endl;
 }
 
-
-
-void  atualiza_tempo_rep() {
-    string marca_rep = "", modelo_rep = ""; int tempo_atual = 0;
+void atualiza_tempo_rep() {
+    string marca_rep = "", modelo_rep = "";
+    int tempo_atual = 0, nrLEspera = 0;
+    bool tempo_reparado = false;
     cout << "Para reparar um carro precisamos de: " << endl;
     cout << "Marca: "; getline(cin, marca_rep);
     cout << "Modelo: "; getline(cin, modelo_rep);
     cout << "Tempo de reparacao novo (Dias): "; cin >> tempo_atual;
-    bool tempo_reparado = false;
-    for (int i = 0; i < nrETs; i++) {
-        if (ETs[i].carros) {
-            for (int j = 0; j < ETs[i].nrCarros; j++) {
-                if ((marca_rep == ETs[i].carros[j].marca) && (modelo_rep == ETs[i].carros[j].modelo)) {
-                    ETs[i].carros[j].tempoReparacao = tempo_atual;
-
-                    tempo_reparado = true;
-
-                    if (tempo_atual == 0) {
-                        reparacao_manual();
-                        ETs[i].faturacao += ETs[i].responsavel.custo * ETs[i].nrCarros; // faturar custo por cada carro reparado
-                        tempo_reparado = false;
-                    }
-                    break;
-                }
-            }
-            if (tempo_reparado) break;
-        }
-    }
     cout << endl;
-    if (tempo_reparado == true)
-        cout << "O carro escolhido foi atualizado!";
-    if (tempo_atual == 0 && tempo_reparado == true) {
-        cout << "O carro escolhido foi reparado! Tempo atualizado a zero!";
+    if (tempo_atual >= 0) {
+        for (int i = 0; i < tamanho; i++) {
+            if ((LEspera[i].marca == marca_rep) && (LEspera[i].modelo == modelo_rep)) {
+                LEspera[i].tempoReparacaoMax = tempo_atual;
+                if (tempo_atual == 0) {
+                    removeLEspera(i);
+                    cout << "Reparacao concluida com sucesso!" << endl;
+                }
+                tempo_reparado = true;
+            }
+        }
+        if (tempo_atual != 0 && tempo_reparado == true)
+            cout << "Carro(s) atualizado(s) com sucesso!" << endl;
+        else if (tempo_atual == 0 && tempo_reparado == true)
+            cout << "Carro(s) reparado(s)!";
+        else
+            cout << "Carro nao se encontra na lista de espera! Tente outra marca/modelo!" << endl;
     }
     else
-        cout << "Carro nao se encontra em nenhuma ET, tente refazer a operacao com outra marca/modelo !.";
+        cout << "Erro! Digite um tempo de reparacao maior ou igual a 0";
     cout << endl;
 }
+
 
 
 void imprimeETs_ciclo() {
