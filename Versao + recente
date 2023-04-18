@@ -456,10 +456,11 @@ void ordemAlfabetica() {
     Carro* LCarros = new Carro[numLCarros];
     guardaLCarros(LCarros, numLCarros);   //guardar os carros todos
 
-    // Sort cars by brand name
+    // organizacao de carros pela sua marca
     sort(LCarros, LCarros + numLCarros, comparaMarca);
 
-    // Print list of all cars
+    cout << "Lista de todos os carros por ordem Alfabetica: " << endl;
+    cout <<endl;
     for (int i = 0; i < numLCarros; i++) {
         cout << "\t" << " | Id: " << LCarros[i].id;
         cout << "\t" << " | Marca: " << LCarros[i].marca;
@@ -488,7 +489,8 @@ void ordemReparacaoMaxima() {
     sort(LCarros, LCarros + numLCarros, comparaTempoRepMax);  
 
     // print da lista de todos os carros
-    cout << "Lista de todos os carros por ordem Alfabetica: " << endl;
+    cout << "Lista de todos os carros por ordem de reparacao maxima: " << endl;
+    cout <<endl;
     for (int i = 0; i < numLCarros; i++) {
         cout << "\t" << " | Id: " << LCarros[i].id;
         cout << "\t" << " | Marca: " << LCarros[i].marca;
