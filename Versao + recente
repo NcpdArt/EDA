@@ -462,11 +462,11 @@ void ordemAlfabetica() {
     cout << "Lista de todos os carros por ordem Alfabetica: " << endl;
     cout <<endl;
     for (int i = 0; i < numLCarros; i++) {
-        cout << "\t" << " | Id: " << LCarros[i].id;
-        cout << "\t" << " | Marca: " << LCarros[i].marca;
-        cout << "\t" << " | Modelo: " << LCarros[i].modelo;
-        cout << "\t" << " | Tempo de Reparacao(MAX): " << LCarros[i].tempoReparacaoMax;
-        cout << "\t" << " | Prioritario: " << LCarros[i].prioritario << endl;
+        cout << setw(5) << " | Id: " << setw(5) <<  LCarros[i].id;   //setw --> deixar espaco em branco
+        cout << setw(20) << " | Marca: " << setw(20) <<  LCarros[i].marca;
+        cout << setw(20) << " | Modelo: " << setw(20) << LCarros[i].modelo;
+        cout << setw(5) << " | Tempo de Reparacao(MAX): " << setw(5) <<  LCarros[i].tempoReparacaoMax;
+        cout << setw(5) << " | Prioritario: " << setw(5) << LCarros[i].prioritario << endl;
     }
 
     delete[] LCarros;
@@ -492,11 +492,11 @@ void ordemReparacaoMaxima() {
     cout << "Lista de todos os carros por ordem de reparacao maxima: " << endl;
     cout <<endl;
     for (int i = 0; i < numLCarros; i++) {
-        cout << "\t" << " | Id: " << LCarros[i].id;
-        cout << "\t" << " | Marca: " << LCarros[i].marca;
-        cout << "\t" << " | Modelo: " << LCarros[i].modelo;
-        cout << "\t" << " | Tempo de Reparacao(MAX): " << LCarros[i].tempoReparacaoMax;
-        cout << "\t" << " | Prioritario: " << LCarros[i].prioritario << endl;
+        cout << setw(5) << " | Id: " << setw(5) <<  LCarros[i].id;
+        cout << setw(20) << " | Marca: " << setw(20) <<  LCarros[i].marca;
+        cout << setw(20) << " | Modelo: " << setw(20) << LCarros[i].modelo;
+        cout << setw(5) << " | Tempo de Reparacao(MAX): " << setw(5) <<  LCarros[i].tempoReparacaoMax;
+        cout << setw(5) << " | Prioritario: " << setw(5) << LCarros[i].prioritario << endl;
     }
 
     delete[] LCarros;
@@ -553,8 +553,7 @@ void gestao() {
                     break;
                 case 2: 
                     ordemReparacaoMaxima();
-                /*case 0:
-                    cout << "Saindo de imprimir oficina!";*/
+                    break;
                 default:
                     cout << "Opcao invalida.\n";
                     break;
