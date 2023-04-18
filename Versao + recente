@@ -385,6 +385,7 @@ void atualiza_tempo_rep() {
 
 
 
+
 void imprimeETs_ciclo() {
     for (int i = 0; i < nrETs; i++){
     cout << "ID ET: " << ETs[i].id;
@@ -421,6 +422,82 @@ void imprimeETs_ciclo() {
     cout << "--------------------------------------------------------------------------------";
     cout << endl;
     }
+}
+void guardaLCarros(Carro* LCarros, int numLCarros) {
+    // tamanho de todos os carros (Lesp + Ets)
+    int aux = 0; //guardar variavel para o indixe da lista de todos os carros
+    for (int i = 0; i < nrETs; i++) {
+        for (int j = 0; j < ETs[i].nrCarros; j++) {
+            LCarros[aux] = ETs[i].carros[j];
+            aux++;
+        }
+    }
+    for (int i = 0; i < tamanho; i++) {
+        LCarros[aux] = LEspera[i];
+        aux++;
+    }
+}
+
+
+bool comparaMarca(Carro& a, Carro& b) {
+    // convert the brand names to uppercase before comparing
+    string marcaA = a.marca;
+    transform(marcaA.begin(), marcaA.end(), marcaA.begin(), toupper);  //transformar as marcas para todo o msm tipo de caps, usando toupper
+    string marcaB = b.marca;
+    transform(marcaB.begin(), marcaB.end(), marcaB.begin(), toupper);
+    return marcaA < marcaB;
+}
+
+void ordemAlfabetica() {
+    int numLCarros = tamanho;
+    for (int i = 0; i < nrETs; i++) {
+        numLCarros += ETs[i].nrCarros;
+    }
+    Carro* LCarros = new Carro[numLCarros];
+    guardaLCarros(LCarros, numLCarros);   //guardar os carros todos
+
+    // Sort cars by brand name
+    sort(LCarros, LCarros + numLCarros, comparaMarca);
+
+    // Print list of all cars
+    for (int i = 0; i < numLCarros; i++) {
+        cout << "\t" << " | Id: " << LCarros[i].id;
+        cout << "\t" << " | Marca: " << LCarros[i].marca;
+        cout << "\t" << " | Modelo: " << LCarros[i].modelo;
+        cout << "\t" << " | Tempo de Reparacao(MAX): " << LCarros[i].tempoReparacaoMax;
+        cout << "\t" << " | Prioritario: " << LCarros[i].prioritario << endl;
+    }
+
+    delete[] LCarros;
+}
+
+
+bool comparaTempoRepMax(const Carro& a, const Carro& b) {
+    return a.tempoReparacaoMax < b.tempoReparacaoMax;
+}
+
+void ordemReparacaoMaxima() {
+    int numLCarros = tamanho;
+    for (int i = 0; i < nrETs; i++) {
+        numLCarros += ETs[i].nrCarros;
+    }
+    Carro* LCarros = new Carro[numLCarros]; 
+    guardaLCarros(LCarros, numLCarros);   //guardar os carros todos
+
+    //organizar os carros pelo tempo máximo
+    sort(LCarros, LCarros + numLCarros, comparaTempoRepMax);  
+
+    // print da lista de todos os carros
+    cout << "Lista de todos os carros por ordem Alfabetica: " << endl;
+    for (int i = 0; i < numLCarros; i++) {
+        cout << "\t" << " | Id: " << LCarros[i].id;
+        cout << "\t" << " | Marca: " << LCarros[i].marca;
+        cout << "\t" << " | Modelo: " << LCarros[i].modelo;
+        cout << "\t" << " | Tempo de Reparacao(MAX): " << LCarros[i].tempoReparacaoMax;
+        cout << "\t" << " | Prioritario: " << LCarros[i].prioritario << endl;
+    }
+
+    delete[] LCarros;
 }
 
 
@@ -465,15 +542,17 @@ void gestao() {
                 cout << endl;
                 cout << "1 - Por ordem alfabetica da marca" << endl;
                 cout << "2 - Por tempo de reparacao" << endl;
+                //cout << "8 - Sair de imprimir a oficina " << endl;
                 cin >> opcao_Imprime;
                 cin.ignore(); // limpar o buffer do teclado
                 switch (opcao_Imprime) {
                 case 1:
-                    //INPUT 7.1
+                    ordemAlfabetica();
                     break;
                 case 2: 
-                    //INPUT 7.2
-                    break;
+                    ordemReparacaoMaxima();
+                /*case 0:
+                    cout << "Saindo de imprimir oficina!";*/
                 default:
                     cout << "Opcao invalida.\n";
                     break;
