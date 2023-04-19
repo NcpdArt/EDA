@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iomanip>  // to use setw
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -460,12 +461,12 @@ void ordemAlfabetica() {
     sort(LCarros, LCarros + numLCarros, comparaMarca);
 
     cout << "Lista de todos os carros por ordem Alfabetica: " << endl;
-    cout <<endl;
+    cout << endl;
     for (int i = 0; i < numLCarros; i++) {
-        cout << setw(5) << " | Id: " << setw(5) <<  LCarros[i].id;   //setw --> deixar espaco em branco
-        cout << setw(20) << " | Marca: " << setw(20) <<  LCarros[i].marca;
+        cout << setw(5) << " | Id: " << setw(5) << LCarros[i].id;
+        cout << setw(20) << " | Marca: " << setw(20) << LCarros[i].marca;
         cout << setw(20) << " | Modelo: " << setw(20) << LCarros[i].modelo;
-        cout << setw(5) << " | Tempo de Reparacao(MAX): " << setw(5) <<  LCarros[i].tempoReparacaoMax;
+        cout << setw(5) << " | Tempo de Reparacao(MAX): " << setw(5) << LCarros[i].tempoReparacaoMax;
         cout << setw(5) << " | Prioritario: " << setw(5) << LCarros[i].prioritario << endl;
     }
 
@@ -490,7 +491,6 @@ void ordemReparacaoMaxima() {
 
     // print da lista de todos os carros
     cout << "Lista de todos os carros por ordem de reparacao maxima: " << endl;
-    cout <<endl;
     for (int i = 0; i < numLCarros; i++) {
         cout << setw(5) << " | Id: " << setw(5) <<  LCarros[i].id;
         cout << setw(20) << " | Marca: " << setw(20) <<  LCarros[i].marca;
